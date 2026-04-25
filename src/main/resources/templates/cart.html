@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Корзина</h1>
+        <nav>
+            <a th:href="@{/}">Главная</a>
+        </nav>
+    </header>
+
+    <main>
+        <p>Ваша корзина пуста.</p>
+        <a th:href="@{/}" class="btn">Вернуться к покупкам</a>
+    </main>
+</body>
+</html>

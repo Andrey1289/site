@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Админка - Управление товарами</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Панель администратора</h1>
+        <nav>
+            <a th:href="@{/}">На главную</a>
+            <a th:href="@{/admin/products/new}">Добавить товар</a>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn">Выйти</button>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Список товаров</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}">1</td>
+                    <td th:text="${product.name}">Товар</td>
+                    <td th:text="${product.price + ' руб.'}">1000 руб.</td>
+                    <td>
+                        <a th:href="@{/admin/products/{id}/edit(id=${product.id})}" class="btn">Редактировать</a>
+                        <form th:action="@{/admin/products/{id}/delete(id=${product.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Удалить товар?')">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

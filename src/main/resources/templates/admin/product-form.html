@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Товар - Форма</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Добавить/Редактировать товар</h1>
+        <nav>
+            <a th:href="@{/admin}">Назад к списку</a>
+        </nav>
+    </header>
+
+    <main>
+        <form th:action="${id != null} ? @{/admin/products/{id}(id=${id})} : @{/admin/products}" 
+              th:object="${productForm}" method="post">
+            
+            <label for="name">Название:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+            
+            <label for="description">Описание:</label>
+            <textarea id="description" th:field="*{description}" rows="4"></textarea>
+            
+            <label for="price">Цена:</label>
+            <input type="number" id="price" th:field="*{price}" step="0.01" required>
+            
+            <label for="imageUrl">URL изображения:</label>
+            <input type="url" id="imageUrl" th:field="*{imageUrl}">
+            
+            <button type="submit" class="btn">Сохранить</button>
+        </form>
+    </main>
+</body>
+</html>
