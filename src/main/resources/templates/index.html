@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин - Главная</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать в наш магазин</h1>
+        <nav>
+            <a th:href="@{/}">Главная</a>
+            <a th:href="@{/cart}">Корзина</a>
+            <a th:href="@{/login}">Войти</a>
+            <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Админка</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Товары</h2>
+        <div class="products-grid">
+            <div class="product-card" th:each="product : ${products}">
+                <img th:src="${product.imageUrl}" alt="Product Image" style="width: 200px; height: 200px; object-fit: cover;">
+                <h3 th:text="${product.name}">Название товара</h3>
+                <p th:text="${product.description}">Описание</p>
+                <p class="price" th:text="${product.price + ' руб.'}">Цена</p>
+                <a th:href="@{/products/{id}(id=${product.id})}" class="btn">Подробнее</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

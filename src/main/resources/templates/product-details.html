@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Товар - Детали</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1 th:text="${product.name}">Название товара</h1>
+        <nav>
+            <a th:href="@{/}">Главная</a>
+            <a th:href="@{/cart}">Корзина</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-details">
+            <img th:src="${product.imageUrl}" alt="Product Image" style="max-width: 400px;">
+            <p th:text="${product.description}">Описание</p>
+            <p class="price" th:text="${product.price + ' руб.'}">Цена</p>
+            <button class="btn">Добавить в корзину</button>
+        </div>
+    </main>
+</body>
+</html>
